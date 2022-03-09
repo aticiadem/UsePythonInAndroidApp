@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'com.chaquo.python'
 }
 
 android {
@@ -14,6 +15,25 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
+
+        sourceSets{
+            main{
+                python.srcDir "src/main/python"
+            }
+        }
+
+        python {
+            buildPython "/usr/local/bin/python3"
+        }
+
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     buildTypes {
