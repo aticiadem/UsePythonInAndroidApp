@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">UsePythonInAndroidApp</string>
+    <string name="enter_number">Sayiyi giriniz</string>
+    <string name="Calculate">Hesapla</string>
 </resources>

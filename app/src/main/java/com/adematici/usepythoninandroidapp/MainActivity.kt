@@ -1,11 +1,39 @@
 package com.adematici.usepythoninandroidapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.adematici.usepythoninandroidapp.databinding.ActivityMainBinding
+import com.chaquo.python.PyObject
+import com.chaquo.python.Python
+import com.chaquo.python.android.AndroidPlatform
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        if (!Python.isStarted()) {
+            Python.start(AndroidPlatform(this))
+        }
+
+        val py = Python.getInstance()
+        val pyObj = py.getModule("script")
+
+        lateinit var obj: PyObject
+        binding.buttonCalculate.setOnClickListener {
+            val number = binding.editTextNumber.text.toString().toInt()
+
+            obj = pyObj.callAttr(
+                "detectOddAndEven",
+                number
+            )
+
+            binding.textViewResult.text = obj.toString()
+        }
+
     }
 }
