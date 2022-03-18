@@ -23,11 +23,10 @@ class MainActivity : AppCompatActivity() {
         val py = Python.getInstance()
         val pyObj = py.getModule("script")
 
-        lateinit var obj: PyObject
         binding.buttonCalculate.setOnClickListener {
             val number = binding.editTextNumber.text.toString().toInt()
 
-            obj = pyObj.callAttr(
+            val obj: PyObject = pyObj.callAttr(
                 "detectOddAndEven",
                 number
             )
