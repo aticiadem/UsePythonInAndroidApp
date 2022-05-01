@@ -3,4 +3,4 @@
 ### How to use Python in Android App?
 All the details on the subject are in this [link][0]
 
-[0]: https://medium.com/p/3f7826e3c713/edit
+[0]: https://www.mobiler.dev/post/android-de-python-i-kullanmak
